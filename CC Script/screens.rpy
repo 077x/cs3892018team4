@@ -253,14 +253,24 @@ screen quick_menu():
             xalign 0.5
             yalign 1.0
 
-            textbutton _("Back") action Rollback()
+            #textbutton _("Back") action Rollback()
             textbutton _("History") action ShowMenu('history')
             textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
             textbutton _("Auto") action Preference("auto-forward", "toggle")
             textbutton _("Save") action ShowMenu('save')
             textbutton _("Q.Save") action QuickSave()
             textbutton _("Q.Load") action QuickLoad()
-            textbutton _("Prefs") action ShowMenu('preferences')
+            textbutton _("Pause") action ShowMenu('preferences')
+
+        vbox:
+            xalign 0.0
+            yalign 1.0
+            imagebutton idle "gui/bkbtn3.png" #action Rollback()
+
+        vbox:
+            xalign 1.0
+            yalign 1.0
+            imagebutton idle "gui/fwdbtn3.png" #action RollForward()
 
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever
@@ -331,9 +341,6 @@ screen navigation():
             ## The quit button is banned on iOS and unnecessary on Android.
             textbutton _("Quit") action Quit(confirm=not main_menu)
 
-        ##elif renpy.variant("mobile"):
-
-            ##textbutton ("Tutorial") action ShowMenu("tutorial")
 
 
 style navigation_button is gui_button
@@ -361,24 +368,28 @@ screen main_menu():
     style_prefix "main_menu"
 
     add gui.main_menu_background
-
+    add "gui/main_menu_title2.png"
     ## This empty frame darkens the main menu.
-    frame:
-        pass
+    ##Commented out to remove the main menu background overlay
+    # frame:
+    #     pass
 
     ## The use statement includes another screen inside this one. The actual
     ## contents of the main menu are in the navigation screen.
     use navigation
 
-    if gui.show_name:
+##Commented out to replace with title image (main_menu_title.png)
+    # if gui.show_name:
+    #
+    #     vbox:
+    #         text "[config.name!t]":
+    #             style "main_menu_title"
+    #
+    #         text "[config.version]":
+    #             style "main_menu_version"
 
-        vbox:
-            text "[config.name!t]":
-                style "main_menu_title"
-
-            text "[config.version]":
-                style "main_menu_version"
-
+##Back button on mobile prompts to quit from the app when in main menu
+    #key "rollback" action Quit(confirm = False)
 
 style main_menu_frame is empty
 style main_menu_vbox is vbox
@@ -558,11 +569,48 @@ screen about():
             label "[config.name!t]"
             text _("Version [config.version!t]\n")
 
+            ##Formatted "About page"
+            # hbox:
+            #         spacing 15
+            #         text ("Made by Team Yusan Weave")
+            #
+            # hbox:
+            #         spacing 15
+            #         text ("CS 389 - Software Engineering")
+            #
+            # null height 35
+            #
+            # hbox:
+            #     spacing 25
+            #     text ("Tomer Alon")
+            #     text ("(ta28815n@pace.edu)")
+            #
+            # hbox:
+            #     spacing 25
+            #     text ("Edwin Muere")
+            #     text ("(em91797n@pace.edu)")
+            #
+            # hbox:
+            #     spacing 25
+            #     text ("Nicholas Austin")
+            #     text ("(naustin@pace.edu)")
+            #
+            # hbox:
+            #     spacing 25
+            #     text ("Corey Strickland")
+            #     text ("(cs40078n@pace.edu)")
+            #
+            # hbox:
+            #     spacing 25
+            #     text ("Christopher Thomas")
+            #     text ("(ct61632n@pace.edu)")
+
+
             ## gui.about is usually set in options.rpy.
             if gui.about:
                 text "[gui.about!t]\n"
 
-            text _("Made with {a=https://www.renpy.org/}Ren'Py{/a} [renpy.version_only].\n\n[renpy.license!t]")
+        ##    text _("Made with {a=https://www.renpy.org/}Ren'Py{/a} [renpy.version_only].\n\n[renpy.license!t]")
 
 
 ## This is redefined in options.rpy to add text to the about screen.
@@ -719,6 +767,7 @@ screen preferences():
 
     tag menu
 
+
     use game_menu(_("Preferences"), scroll="viewport"):
 
         vbox:
@@ -734,12 +783,12 @@ screen preferences():
                         textbutton _("Window") action Preference("display", "window")
                         textbutton _("Fullscreen") action Preference("display", "fullscreen")
 
-                vbox:
-                    style_prefix "radio"
-                    label _("Rollback Side")
-                    textbutton _("Disable") action Preference("rollback side", "disable")
-                    textbutton _("Left") action Preference("rollback side", "left")
-                    textbutton _("Right") action Preference("rollback side", "right")
+                # vbox:
+                #     style_prefix "radio"
+                #     label _("Rollback Side")
+                #     textbutton _("Disable") action Preference("rollback side", "disable")
+                #     textbutton _("Left") action Preference("rollback side", "left")
+                #     textbutton _("Right") action Preference("rollback side", "right")
 
                 vbox:
                     style_prefix "check"
@@ -801,6 +850,12 @@ screen preferences():
                         textbutton _("Mute All"):
                             action Preference("all mute", "toggle")
                             style "mute_all_button"
+
+##Rollback options default to "left"
+default preferences.desktop_rollback_side = "left"
+
+default preferences.mobile_rollback_side = "left"
+
 
 
 style pref_label is gui_label
@@ -963,16 +1018,6 @@ style history_label:
 style history_label_text:
     xalign 0.5
 
-## Tutorial Screen #############################################################
-
-screen tutorial():
-
-    tag menu
-
-    default device = "mobile"
-
-    hbox:
-        text ("This is a tutorial for the game.")
 
 ## Help screen #################################################################
 ##
@@ -1436,15 +1481,27 @@ screen quick_menu():
         xalign 0.5
         yalign 1.0
 
-        textbutton _("Back") action Rollback()
+        # textbutton _("Back") action Rollback()
+        textbutton _("Pause") action ShowMenu()
         textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
         textbutton _("Auto") action Preference("auto-forward", "toggle")
-        textbutton _("Menu") action ShowMenu()
+
+    vbox:
+        xalign 0.03
+        yalign 0.97
+        imagebutton idle "gui/bkbtn3.png" action Rollback()
+
+
+    vbox:
+        xalign 0.97
+        yalign 0.97
+        imagebutton idle "gui/fwdbtn3.png" action RollForward()
+
 
 
 style window:
     variant "small"
-    background "gui/phone/textbox.png"
+    background "gui/phone/textbox2.png"
 
 style radio_button:
     variant "small"
