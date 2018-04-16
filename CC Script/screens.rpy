@@ -260,6 +260,7 @@ screen quick_menu():
             textbutton _("Save") action ShowMenu('save')
             textbutton _("Q.Save") action QuickSave()
             textbutton _("Q.Load") action QuickLoad()
+            textbutton _("Journal") action ShowMenu('journal')
             textbutton _("Pause") action ShowMenu('preferences')
 
         vbox:
@@ -322,6 +323,8 @@ screen navigation():
         textbutton _("Load") action ShowMenu("load")
 
         textbutton _("Preferences") action ShowMenu("preferences")
+        
+        textbutton _("Journal") action ShowMenu('journal')
 
         if _in_replay:
 
@@ -1528,6 +1531,7 @@ screen quick_menu():
         textbutton _("Pause") action ShowMenu()
         textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
         textbutton _("Auto") action Preference("auto-forward", "toggle")
+        textbutton _("Journal") action ShowMenu('journal')
 
     vbox:
         xalign 0.03
