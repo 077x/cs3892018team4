@@ -340,6 +340,11 @@ screen navigation():
 
             ## The quit button is banned on iOS and unnecessary on Android.
             textbutton _("Quit") action Quit(confirm=not main_menu)
+            
+          if renpy.variant("mobile"):
+
+            textbutton _("Help") action ShowMenu("mobilehelp")
+
 
 
 
@@ -1152,6 +1157,44 @@ screen gamepad_help():
         text _("Hides the user interface.")
 
     textbutton _("Calibrate") action GamepadCalibrate()
+
+
+style help_button is gui_button
+style help_button_text is gui_button_text
+style help_label is gui_label
+style help_label_text is gui_label_text
+style help_text is gui_text
+
+style help_button:
+    properties gui.button_properties("help_button")
+    xmargin 12
+
+style help_button_text:
+    properties gui.button_text_properties("help_button")
+
+style help_label:
+    xsize 375
+    right_padding 30
+
+style help_label_text:
+    size gui.text_size
+    xalign 1.0
+    text_align 1.0
+    
+    ## Mobile Help screen ##########################################################
+
+screen mobilehelp():
+
+    tag menu
+
+    use game_menu(_("Help"), scroll="viewport"):
+
+        style_prefix "help"
+
+        hbox:
+            label _("Arrow Buttons")
+            text _("Navigate through the dialogue. The left arrow rolls back, while the right arrow rolls forward.")
+
 
 
 style help_button is gui_button
