@@ -22,8 +22,13 @@ init python:
 ##
 ## The colors of text in the interface.
 
+
+## "Chinese Club" title color = #FEF6B1
+## 100% k black color = #231f20
+
+
 ## An accent color used throughout the interface to label and highlight text.
-define gui.accent_color = '#990000'
+define gui.accent_color = '#FEF6B1'
 
 ## The color used for a text button when it is neither selected nor hovered.
 define gui.idle_color = '#231f20'
@@ -33,22 +38,22 @@ define gui.idle_color = '#231f20'
 define gui.idle_small_color = '#231f20'
 
 ## The color that is used for buttons and bars that are hovered.
-define gui.hover_color = '#990000'
+define gui.hover_color = '#FEF6B1'
 
 ## The color used for a text button when it is selected but not focused. A
 ## button is selected if it is the current screen or preference value.
-define gui.selected_color = '#990000'
+define gui.selected_color = '#FEF6B1'
 
 ## The color used for a text button when it cannot be selected.
-define gui.insensitive_color = '#aaaaaa7f'
+define gui.insensitive_color = '#aaaaaa'
 
 ## Colors used for the portions of bars that are not filled in. These are not
 ## used directly, but are used when re-generating bar image files.
-define gui.muted_color = '#c16666'
-define gui.hover_muted_color = '#d69999'
+define gui.muted_color = '#bfacac'
+define gui.hover_muted_color = '#d3bebe'
 
 ## The colors used for dialogue and menu choice text.
-define gui.text_color = '#231f20'
+define gui.text_color = '#e5e5e5'
 define gui.interface_text_color = '#231f20'
 
 
@@ -105,7 +110,8 @@ define gui.textbox_yalign = 1.0
 ## The placement of the speaking character's name, relative to the textbox.
 ## These can be a whole number of pixels from the left or top, or 0.5 to center.
 define gui.name_xpos = 360
-define gui.name_ypos = 0.0
+define gui.name_ypos = 0.05 ## 0.15 to keep Namebox aligned with text, or use value 0.05 to habe namebox just above text
+
 
 ## The horizontal alignment of the character's name. This can be 0.0 for left-
 ## aligned, 0.5 for centered, and 1.0 for right-aligned.
@@ -209,8 +215,8 @@ define gui.choice_button_borders = Borders(150, 8, 150, 8)
 define gui.choice_button_text_font = gui.text_font
 define gui.choice_button_text_size = gui.text_size
 define gui.choice_button_text_xalign = 0.5
-define gui.choice_button_text_idle_color = "#cccccc"
-define gui.choice_button_text_hover_color = "#ffffff"
+define gui.choice_button_text_idle_color = "#e5e5e5"
+define gui.choice_button_text_hover_color = "#231f20"
 
 
 ## File Slot Buttons ###########################################################
@@ -255,7 +261,7 @@ define gui.notify_ypos = 68
 define gui.choice_spacing = 33
 
 ## Buttons in the navigation section of the main and game menus.
-define gui.navigation_spacing = 6
+define gui.navigation_spacing = 15
 
 ## Controls the amount of spacing between preferences.
 define gui.pref_spacing = 15
@@ -430,7 +436,7 @@ init python:
 
         ## Adjust the location of the textbox.
         gui.textbox_height = 360
-        gui.name_xpos = 120
+        gui.name_xpos = 200
         gui.text_xpos = 135
         gui.text_width = 1650
 

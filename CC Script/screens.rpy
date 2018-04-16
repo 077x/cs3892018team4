@@ -145,7 +145,7 @@ style namebox:
     ypos gui.name_ypos
     ysize gui.namebox_height
 
-    background Frame("gui/namebox.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
+    background Frame("gui/namebox2.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
     padding gui.namebox_borders.padding
 
 style say_label:
@@ -223,7 +223,7 @@ style choice_button_text is button_text
 
 style choice_vbox:
     xalign 0.5
-    ypos 405
+    ypos 680
     yanchor 0.5
 
     spacing gui.choice_spacing
@@ -251,27 +251,32 @@ screen quick_menu():
             style_prefix "quick"
 
             xalign 0.5
-            yalign 1.0
+            yalign 0.985
 
+            textbutton _("Menu") action ShowMenu('preferences')
             #textbutton _("Back") action Rollback()
-            textbutton _("History") action ShowMenu('history')
+            # textbutton _("History") action ShowMenu('history')
             textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
             textbutton _("Auto") action Preference("auto-forward", "toggle")
             textbutton _("Save") action ShowMenu('save')
             textbutton _("Q.Save") action QuickSave()
             textbutton _("Q.Load") action QuickLoad()
             textbutton _("Journal") action ShowMenu('journal')
-            textbutton _("Pause") action ShowMenu('preferences')
+
 
         vbox:
             xalign 0.0
             yalign 1.0
-            imagebutton idle "gui/bkbtn3.png" #action Rollback()
+            imagebutton:
+                idle "gui/bkbtn.png"
+                action Rollback()
 
         vbox:
             xalign 1.0
             yalign 1.0
-            imagebutton idle "gui/fwdbtn3.png" #action RollForward()
+            imagebutton:
+                idle "gui/fwdbtn.png"
+                action RollForward()
 
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever
@@ -306,7 +311,10 @@ screen navigation():
         style_prefix "navigation"
 
         xpos gui.navigation_xpos
-        yalign 0.5
+        yalign 0.65
+
+        if renpy.variant("mobile"):
+            yalign 0.55
 
         spacing gui.navigation_spacing
 
@@ -316,15 +324,15 @@ screen navigation():
 
         else:
 
-            textbutton _("History") action ShowMenu("history")
+            # textbutton _("History") action ShowMenu("history")
 
             textbutton _("Save") action ShowMenu("save")
 
         textbutton _("Load") action ShowMenu("load")
 
         textbutton _("Preferences") action ShowMenu("preferences")
-        
-        textbutton _("Journal") action ShowMenu('journal')
+
+        textbutton _("Journal") action ShowMenu("journal")
 
         if _in_replay:
 
@@ -343,11 +351,10 @@ screen navigation():
 
             ## The quit button is banned on iOS and unnecessary on Android.
             textbutton _("Quit") action Quit(confirm=not main_menu)
-            
-          if renpy.variant("mobile"):
+
+        if renpy.variant("mobile"):
 
             textbutton _("Help") action ShowMenu("mobilehelp")
-
 
 
 
@@ -397,7 +404,7 @@ screen main_menu():
     #             style "main_menu_version"
 
 ##Back button on mobile prompts to quit from the app when in main menu
-    #key "rollback" action Quit(confirm = False)
+    key "rollback" action Quit(confirm = True)
 
 style main_menu_frame is empty
 style main_menu_vbox is vbox
@@ -519,7 +526,7 @@ style game_menu_outer_frame:
     bottom_padding 45
     top_padding 180
 
-    background "gui/overlay/game_menu.png"
+    background "gui/overlay/pause_game_menu.png"
 
 style game_menu_navigation_frame:
     xsize 420
@@ -1183,8 +1190,8 @@ style help_label_text:
     size gui.text_size
     xalign 1.0
     text_align 1.0
-    
-    ## Mobile Help screen ##########################################################
+
+## Mobile Help screen ##########################################################
 
 screen mobilehelp():
 
@@ -1525,30 +1532,34 @@ screen quick_menu():
         style_prefix "quick"
 
         xalign 0.5
-        yalign 1.0
+        yalign 0.985
 
         # textbutton _("Back") action Rollback()
-        textbutton _("Pause") action ShowMenu()
+        textbutton _("Menu") action ShowMenu()
         textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
         textbutton _("Auto") action Preference("auto-forward", "toggle")
-        textbutton _("Journal") action ShowMenu('journal')
+        textbutton _("Journal") action ShowMenu("journal")
 
     vbox:
         xalign 0.03
         yalign 0.97
-        imagebutton idle "gui/bkbtn3.png" action Rollback()
+        imagebutton:
+            idle "gui/bkbtn.png"
+            action Rollback()
 
 
     vbox:
         xalign 0.97
         yalign 0.97
-        imagebutton idle "gui/fwdbtn3.png" action RollForward()
+        imagebutton:
+            idle "gui/fwdbtn.png"
+            action RollForward()
 
 
 
 style window:
     variant "small"
-    background "gui/phone/textbox2.png"
+    background "gui/phone/textbox3.png"
 
 style radio_button:
     variant "small"
@@ -1568,7 +1579,7 @@ style main_menu_frame:
 
 style game_menu_outer_frame:
     variant "small"
-    background "gui/phone/overlay/game_menu.png"
+    background "gui/phone/overlay/pause_game_menu.png"
 
 style game_menu_navigation_frame:
     variant "small"
