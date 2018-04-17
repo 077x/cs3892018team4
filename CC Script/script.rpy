@@ -3,11 +3,17 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
-define j = Character("Jevon")
-define m =  Character("michelle")
-define c =  Character("chris")
-define e = Character("elaine")
-define n = Character("")
+## init statement below initializes journal (chinese info database)
+init:
+    if not persistent.journal:
+        $persistent.journal = []
+
+define pov = Character("[povname]", color ='#231f20')
+define co = Character("Corey", color = "#231f20")
+define ch = Character("Chris", color = "#231f20")
+define e = Character("Elaine", color = "#231f20")
+define m = Character("Michelle", color = "#231f20")
+define l = Character("Linda", color = "#231f20")
 
 # The game starts here.
 
