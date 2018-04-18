@@ -109,8 +109,8 @@ define gui.textbox_yalign = 1.0
 
 ## The placement of the speaking character's name, relative to the textbox.
 ## These can be a whole number of pixels from the left or top, or 0.5 to center.
-define gui.name_xpos = 360
-define gui.name_ypos = 0.05 ## 0.15 to keep Namebox aligned with text, or use value 0.05 to habe namebox just above text
+define gui.name_xpos = 360 ##360 is default
+define gui.name_ypos = 0.035 ## 0.15 to keep Namebox aligned with text, or use value 0.05 to habe namebox just above text
 
 
 ## The horizontal alignment of the character's name. This can be 0.0 for left-
@@ -258,7 +258,7 @@ define gui.skip_ypos = 15
 define gui.notify_ypos = 68
 
 ## The spacing between menu choices.
-define gui.choice_spacing = 33
+define gui.choice_spacing = 25 ##33 is default
 
 ## Buttons in the navigation section of the main and game menus.
 define gui.navigation_spacing = 15
@@ -436,7 +436,7 @@ init python:
 
         ## Adjust the location of the textbox.
         gui.textbox_height = 360
-        gui.name_xpos = 200
+        gui.name_xpos = 125 ##200 is default
         gui.text_xpos = 135
         gui.text_width = 1650
 
