@@ -73,7 +73,7 @@ style vslider:
 
 style frame:
     padding gui.frame_borders.padding
-    background Frame("gui/frame.png", gui.frame_borders, tile=gui.frame_tile)
+    background Frame("gui/frame2.png", gui.frame_borders, tile=gui.frame_tile)
 
 
 
@@ -178,9 +178,9 @@ screen input(prompt):
 
         vbox:
             xalign gui.dialogue_text_xalign
-            xpos gui.dialogue_xpos
+            xpos 0.3 ## gui.dialogue_xpos is default
             xsize gui.dialogue_width
-            ypos gui.dialogue_ypos
+            ypos -550 ## gui.dialogue_ypos is default
 
             text prompt style "input_prompt"
             input id "input"
@@ -223,7 +223,7 @@ style choice_button_text is button_text
 
 style choice_vbox:
     xalign 0.5
-    ypos 650 ##680
+    ypos 600 ##680
     yanchor 0.5
 
     spacing gui.choice_spacing
@@ -322,6 +322,7 @@ screen navigation():
 
             textbutton _("Start") action Start()
 
+
         else:
 
             # textbutton _("History") action ShowMenu("history")
@@ -333,6 +334,8 @@ screen navigation():
         textbutton _("Preferences") action ShowMenu("preferences")
 
         textbutton _("Journal") action ShowMenu("journal")
+
+        # textbutton _("Characters") action ShowMenu("characters_info")
 
         if _in_replay:
 
@@ -383,7 +386,7 @@ screen main_menu():
     style_prefix "main_menu"
 
     add gui.main_menu_background
-    add "gui/main_menu_title2.png"
+    add "gui/main_menu_title_chars.png"
     ## This empty frame darkens the main menu.
     ##Commented out to remove the main menu background overlay
     # frame:
@@ -526,7 +529,7 @@ style game_menu_outer_frame:
     bottom_padding 45
     top_padding 180
 
-    background "gui/overlay/pause_game_menu.png"
+    background "gui/overlay/pause_game_menu3.png"
 
 style game_menu_navigation_frame:
     xsize 420
@@ -585,40 +588,75 @@ screen about():
             text _("Version [config.version!t]\n")
 
             ##Formatted "About page"
-            # hbox:
-            #         spacing 15
-            #         text ("Made by Team Yusan Weave")
-            #
-            # hbox:
-            #         spacing 15
-            #         text ("CS 389 - Software Engineering")
-            #
-            # null height 35
-            #
-            # hbox:
-            #     spacing 25
-            #     text ("Tomer Alon")
-            #     text ("(ta28815n@pace.edu)")
-            #
-            # hbox:
-            #     spacing 25
-            #     text ("Edwin Muere")
-            #     text ("(em91797n@pace.edu)")
-            #
-            # hbox:
-            #     spacing 25
-            #     text ("Nicholas Austin")
-            #     text ("(naustin@pace.edu)")
-            #
-            # hbox:
-            #     spacing 25
-            #     text ("Corey Strickland")
-            #     text ("(cs40078n@pace.edu)")
-            #
-            # hbox:
-            #     spacing 25
-            #     text ("Christopher Thomas")
-            #     text ("(ct61632n@pace.edu)")
+            hbox:
+                    spacing 15
+                    text ("{color=#FEF6B1}Made by Team Yusan Weave{/color}")
+
+            hbox:
+                    spacing 15
+                    text ("CS 389 - Software Engineering")
+
+            null height 35
+
+            hbox:
+                spacing 25
+                text ("Tomer Alon")
+                text ("(ta28815n@pace.edu)")
+
+            hbox:
+                spacing 25
+                text ("Edwin Muere")
+                text ("(em91797n@pace.edu)")
+
+            hbox:
+                spacing 25
+                text ("Nicholas Austin")
+                text ("(naustin@pace.edu)")
+
+            hbox:
+                spacing 25
+                text ("Corey Strickland")
+                text ("(cs40078n@pace.edu)")
+
+            hbox:
+                spacing 25
+                text ("Christopher Thomas")
+                text ("(ct61632n@pace.edu)")
+
+            null height 25
+
+            vbox:
+                spacing 5
+                text _("{color=#FEF6B1}Character Design:{/color}")
+
+                text _("Tomer Alon")
+
+            null height 25
+
+            vbox:
+                spacing 5
+                text _("{color=#FEF6B1}Environment Design:{/color}")
+                text _("Jake Bowkett")
+
+                text _("mB0sco (DeviantArt)")
+
+            null height 25
+
+            vbox:
+                spacing 5
+                text _("{color=#FEF6B1}Soundtrack:{/color}")
+                text _("1991")
+
+                text _("Cosmicosmo")
+
+                text _("Darren Ashley")
+
+                text _("Flume")
+
+                text _("vbnd")
+
+                text _("zotti")
+
 
 
             ## gui.about is usually set in options.rpy.
@@ -1205,6 +1243,14 @@ screen mobilehelp():
             label _("Arrow Buttons")
             text _("Navigate through the dialogue. The left arrow rolls back, while the right arrow rolls forward.")
 
+        hbox:
+            label _("Saving")
+            text _("You may press the \"menu\" button and save at any point in the game.")
+
+        hbox:
+            label _("Loading")
+            text _("You may load the game from any save file from the main menu, or even while in-game.")
+
 
 
 style help_button is gui_button
@@ -1283,7 +1329,7 @@ style confirm_button is gui_medium_button
 style confirm_button_text is gui_medium_button_text
 
 style confirm_frame:
-    background Frame([ "gui/confirm_frame.png", "gui/frame.png"], gui.confirm_frame_borders, tile=gui.frame_tile)
+    background Frame([ "gui/confirm_frame2.png", "gui/frame2.png"], gui.confirm_frame_borders, tile=gui.frame_tile)
     padding gui.confirm_frame_borders.padding
     xalign .5
     yalign .5
@@ -1579,7 +1625,7 @@ style main_menu_frame:
 
 style game_menu_outer_frame:
     variant "small"
-    background "gui/phone/overlay/pause_game_menu.png"
+    background "gui/phone/overlay/pause_game_menu3.png"
 
 style game_menu_navigation_frame:
     variant "small"
