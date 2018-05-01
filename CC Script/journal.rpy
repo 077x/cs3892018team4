@@ -1,34 +1,35 @@
 ## Chinese culture, facts, and stories database
 ## Information in the database should update upon reaching certain points in the game that provide the information
 
-## To add information to the database, write $addtodb("Your info here")
-
-init python:
-  def addtodb(item):
-      if item not in persistent.journal:
-          persistent.journal.append(item)
-
-
 screen journal():
 
     tag menu
+
+    default journal = "general"
 
     predict False
 
     use game_menu(_("Journal"), scroll="viewport"):
 
-        $count = 0
-
         style_prefix "about"
 
-        vbox:
-            label ("Entries:")
-        vbox:
-            spacing 15
-            for item in persistent.journal:
-                $count += 1
-                hbox:
-                    spacing 15
+        hbox:
 
-                    label ("[count].")
-                    text item
+            spacing 25
+
+            textbutton _("General") action SetScreenVariable("journal", "general")
+
+            textbutton _("Clothing") action SetScreenVariable("journal", "clothing")
+
+            textbutton _("Music") action SetScreenVariable("journal", "music")
+
+            textbutton _("Food") action SetScreenVariable("journal", "food")
+
+        if journal == "general":
+            use journal_general
+        elif journal == "clothing":
+            use journal_clothing
+        elif journal == "music":
+            use journal_music
+        elif journal == "food":
+            use journal_food
