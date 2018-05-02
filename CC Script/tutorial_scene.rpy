@@ -1,9 +1,22 @@
 ##Tutorial Script
 label tutorial_scene:
+
     scene black
+    with fade
     stop music fadeout 1.0
 
-    "Hello, and welcome to Chinese Club."
+
+    "Hi there, what is your name?"
+
+    ## Provide player's input as character's name
+    python:
+        povname = renpy.input("")
+        povname = povname.strip()
+
+        if not povname:
+            povname = "Jevon-Lee"
+
+    "Hello, [povname], and welcome to Chinese Club!"
 
     menu:
         "Before you jump into the game, would you like to go through a quick tutorial?"
