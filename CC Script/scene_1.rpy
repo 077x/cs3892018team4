@@ -1,5 +1,7 @@
 ## Scene 1
 label intro:
+    ## $renpy.block_rollback() will not allow the player to roll back to the tutorial_scene
+    $renpy.block_rollback()
     play music main_theme fadein 1.0
     scene main bedroom
     with fade
