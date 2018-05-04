@@ -70,6 +70,6 @@ label intro:
     "Except Fortnite club."
     "But I suck at that game anyway."
     "I might as well check out the Chinese culture club..."
-    "Michelle really intrigues me, and I'd like to see ."
+    "Michelle really intrigues me, and I'd like to see."
 
     jump first_club_meeting

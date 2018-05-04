@@ -59,6 +59,7 @@ image black = "black_screen.png"
 image main bedroom = "sunset_room.png"
 image school outside = "school_entrance.png"
 image club room1 = "classroom2.png"
+image club room2 = "classroom3.png"
 image school corridor = "school_corridor.png"
 image hallway morning = "hallway_morning.png"
 image hallway afternoon = "hallway_afternoon.png"
@@ -98,19 +99,8 @@ label start:
 
     call tutorial_scene
 
-## $renpy.block_rollback() will not allow the player to roll back to the tutorial_scene
-    $renpy.block_rollback()
-
 ##Beginning of Scene1
     call intro
-
-## $persistent.journal = [] turns the database into an empty list
-## This statement is only used for development purposes; will delete when game releases
-    $persistent.journal_general = []
-    $persistent.journal_clothing = []
-    $persistent.journal_music = []
-    $persistent.journal_food = []
-######## DELETE LATER ##########################################################
 
 
     # This ends the game ("return").

@@ -67,7 +67,7 @@ label first_club_meeting:
     pov "Hello, my name is [povname], what--"
     e "Hey, I'm Elaine."
     "....."
-    "She didn’t ask me any questions. I guess I’ll ask"
+    "She didn’t ask me any questions. I guess I’ll ask her something."
     pov "So, what do you like to do for fun?"
     e "I like to eat food and sleep."
     pov "So why did you join this club?"
@@ -81,7 +81,6 @@ label first_club_meeting:
 
     hide elaine
     with dissolve
-
 
     "She just left...."
 
@@ -122,7 +121,7 @@ label first_club_meeting:
     pov "I play League too, it's one of my favorites. I am not too great at it, though."
     l "Hehe, it just takes practice..."
     l "If you want, I can help you."
-    pov "Ummmm"
+    pov "Ummmm..."
     pov "I’ll think about it."
     l "What’s your favorite food?"
     pov "I love burgers!"
@@ -209,7 +208,7 @@ label first_club_meeting:
     hide michelle
     with dissolve
 
-    scene school corridor:
+    scene club room2:
     with fade
 
     "As I head outside to the hallway, Michelle comes up to me."
