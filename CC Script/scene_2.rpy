@@ -335,7 +335,7 @@ label poker_help_choice:
     scene black
     with fade
 
-    "I think I should go to club again. Maybe something special will happen."
+    "I think I should go to the club again. Maybe something special will happen."
     "I hope...."
 
     "Should I actually go to the next club meeting?"
