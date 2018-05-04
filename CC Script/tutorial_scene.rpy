@@ -29,6 +29,7 @@ label tutorial_scene:
 
         "This is the textbox where characters you'll meet will talk."
         "You may want to use the arrow buttons on the sides to go back and forth in the dialogue."
+        "Addionally, you may press the area above the buttons on the screen to navigate the dialouge."
         "You can pause the game at any time and save whenever you want"
         "So when you come back, you can jump right back into where you've left off."
         "This should cover the basics."
